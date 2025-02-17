@@ -1,6 +1,6 @@
-grpcio==1.39.0
-grpcio-tools==1.39.0
-protobuf==3.17.3
+grpcio==1.70.0
+grpcio-tools==1.70.0
+protobuf==5.29.3
 PyJWT==2.1.0
 dnspython==2.7.0
 pymongo==4.11.1
