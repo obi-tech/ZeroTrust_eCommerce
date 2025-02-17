@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from app.services.db import get_order_collection
 from ..kafka.producer import send_order_event
 from bson import ObjectId
@@ -32,8 +34,10 @@ def create_order(order_data):
     try:
         result = orders.insert_one(order_data)
         order_data["_id"] = str(result.inserted_id)  # Convert ObjectId to string for external usage
-
+        order_data["created_date"] = datetime.utcnow().isoformat()
         print(f"Inserted order with _id: {result.inserted_id}")
+
+        #TD: get current user ID and add to created by
 
         # Send Kafka event
         send_order_event(order_data)

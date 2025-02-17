@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from .routers import orders
-from .metrics import setup_metrics
+from app.routers import orders
+from app.metrics import setup_metrics
 
 app = FastAPI()
 
