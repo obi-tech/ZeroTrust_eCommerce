@@ -30,15 +30,26 @@ def create_channel():
     channel = grpc.secure_channel('localhost:50051', credentials)
     return channel
 
-def test_create_account():
+def create_account(name, email, password):
     token = generate_token()
     channel = create_channel()
     stub = account_service_pb2_grpc.AccountServiceStub(channel)
 
     metadata = [('authorization', token)]
-    request = account_service_pb2.AccountRequest(name='John Doe', email='john@example.com', password='password')
+    request = account_service_pb2.AccountRequest(name=name, email=email, password=password)
     response = stub.CreateAccount(request, metadata=metadata)
     print(response)
+
+def test_create_multiple_accounts():
+    users = [
+        {"name": "Alice Smith", "email": "alice@example.com", "password": "password1"},
+        {"name": "Bob Johnson", "email": "bob@example.com", "password": "password2"},
+        {"name": "Charlie Brown", "email": "charlie@example.com", "password": "password3"},
+        {"name": "Diana Prince", "email": "diana@example.com", "password": "password4"},
+    ]
+
+    for user in users:
+        create_account(user["name"], user["email"], user["password"])
 
 def test_invalid_token():
     token = 'invalid_token'
@@ -63,6 +74,6 @@ def test_no_token():
         print(e.details())
 
 if __name__ == '__main__':
-    test_create_account()
+    test_create_multiple_accounts()
     test_invalid_token()
     test_no_token()

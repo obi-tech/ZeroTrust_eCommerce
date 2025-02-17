@@ -14,7 +14,12 @@ This is the Account Service for managing user accounts.
     python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. account_service.proto
     ```
 
-3. Run the server:
+3. Start MongoDB server (if not installed as a service):
+    ```sh
+    mongod --port 27018 --dbpath "C:\MongoDB\data"
+    ```
+
+4. Run the server:
     ```sh
     python src/main.py
     ```
