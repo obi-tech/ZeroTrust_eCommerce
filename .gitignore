@@ -76,4 +76,4 @@ yarn-error.log*
 # Ignore microservices-specific virtual environments
 order-management-service/venv/
 authentication-service/venv/
-product-catalog-service/venv/
+product-inventory-service/venv/
