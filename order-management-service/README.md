@@ -16,7 +16,8 @@ as kafka producer to produce order_created event
 ## Test
 1. Open http://127.0.0.1:8000/docs#/default/create_new_order_orders__post
 2.  Create an order using post api. Payload for test:
-```{
+```
+{
 "product_id": "P78624",
 "quantity": 2,
 "created_by": "U193039"
