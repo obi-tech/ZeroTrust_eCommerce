@@ -14,7 +14,7 @@ as kafka producer to produce order_created event
 1. run kafka and mongodb docker
 2. ``uvicorn app.main:app --reload --port 8000``
 ## Test
-1. Open
+1. Open http://127.0.0.1:8000/docs#/default/create_new_order_orders__post
 2.  Create an order using post api. Payload for test:
 ```{
 "product_id": "P78624",
