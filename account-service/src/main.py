@@ -7,6 +7,7 @@ from account_service_pb2 import AccountRequest, AccountResponse, AccountId, Dele
 from db import get_account_collection
 from bson.objectid import ObjectId
 from kafka_producer import publish_event
+import os
 
 class AccountService(AccountServiceServicer):
     def CreateAccount(self, request, context):
@@ -70,26 +71,35 @@ class AccountService(AccountServiceServicer):
         else:
             context.abort(grpc.StatusCode.NOT_FOUND, 'Account not found')
 
+    def GetAccountByEmail(self, request, context):
+        print(request.email)
+        account_collection = get_account_collection()
+        account = account_collection.find_one({"email": request.email})
+        if account:
+            return AccountResponse(id=str(account["_id"]), name=account['name'], email=account['email'])
+        else:
+            context.abort(grpc.StatusCode.NOT_FOUND, 'Account not found')
+
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     account_service_pb2_grpc.add_AccountServiceServicer_to_server(AccountService(), server)
-    
-    # Load server certificate and key
-    with open('server.crt', 'rb') as f:
-        server_cert = f.read()
-    with open('server.key', 'rb') as f:
-        server_key = f.read()
-    with open('ca.crt', 'rb') as f:
-        ca_cert = f.read()
 
-    # Configure server credentials
-    server_credentials = grpc.ssl_server_credentials(
-        [(server_key, server_cert)],
-        root_certificates=ca_cert,
-        require_client_auth=True
-    )
+    # Load server certificate and key
+    # with open('server.crt', 'rb') as f:
+    #     server_cert = f.read()
+    # with open('server.key', 'rb') as f:
+    #     server_key = f.read()
+    # with open('ca.crt', 'rb') as f:
+    #     ca_cert = f.read()
+    #
+    # # Configure server credentials
+    # server_credentials = grpc.ssl_server_credentials(
+    #     [(server_key, server_cert)],
+    #     root_certificates=ca_cert,
+    #     require_client_auth=True
+    # )
     
-    server.add_secure_port('[::]:50051', server_credentials)
+    server.add_insecure_port('[::]:50051')
     server.start()
     try:
         while True:
