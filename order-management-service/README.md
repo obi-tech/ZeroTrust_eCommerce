@@ -1,4 +1,6 @@
 # Order management service
+This order management service provide order creation/delete/update methos and act
+as kafka producer to produce order_created event
 ## Prerequisite
 1. Python >= 3.11
 2. You have kafka docker running on port 9092
