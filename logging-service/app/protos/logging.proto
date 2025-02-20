@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package logging;
+
+service LoggingService {
+  rpc SendLog (LogRequest) returns (LogResponse) {}
+  rpc GetLogs (GetLogsRequest) returns (GetLogsResponse) {}
+}
+
+message LogRequest {
+  string service = 1;
+  string level = 2;
+  string message = 3;
+  double timestamp = 4;
+}
+
+message LogResponse {
+  string id = 1;
+}
+
+message GetLogsRequest {
+  string service = 1;
+  string level = 2;
+  double start_time = 3;
+  double end_time = 4;
+}
+
+message GetLogsResponse {
+  repeated LogEntry logs = 1;
+}
+
+message LogEntry {
+  string id = 1;
+  string service = 2;
+  string level = 3;
+  string message = 4;
+  double timestamp = 5;
+}

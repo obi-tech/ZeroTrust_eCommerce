@@ -10,6 +10,10 @@ __pycache__/
 venv/
 env/
 ENV/
+account-service/.venv/
+authentication-service/.venv/
+
+.venv/
 
 # Installed package dependencies
 *.egg-info/
