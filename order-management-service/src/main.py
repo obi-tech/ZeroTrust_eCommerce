@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-from app.routers import orders
-from app.metrics import setup_metrics
+from src.routers.orders import router
+from src.metrics import setup_metrics
 
 app = FastAPI()
 
 # Include routers
-app.include_router(orders.router)
+app.include_router(router)
 
 # Setup Prometheus metrics
 setup_metrics(app)

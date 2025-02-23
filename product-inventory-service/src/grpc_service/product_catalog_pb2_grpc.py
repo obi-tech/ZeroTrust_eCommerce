@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from app.grpc_service import product_catalog_pb2 as app_dot_grpc_dot_product__catalog__pb2
+from src.grpc_service import product_catalog_pb2 as app_dot_grpc_dot_product__catalog__pb2
 
 GRPC_GENERATED_VERSION = '1.69.0'
 GRPC_VERSION = grpc.__version__

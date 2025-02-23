@@ -1,5 +1,7 @@
-from app.db.db import get_product_collection
 from pymongo.errors import DuplicateKeyError
+
+from ..db.db import get_product_collection
+
 # Get MongoDB collection
 products_collection = get_product_collection()
 

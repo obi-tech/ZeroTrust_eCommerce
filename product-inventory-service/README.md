@@ -4,7 +4,7 @@ product stock accordingly.
 ## Prerequisite
 1. Python >= 3.11
 2. You have kafka docker running on port 9092
-3. You have mongoDB docker running on port 27016
+3. You have mongoDB docker running on port 27014
 4. (Optional) MongoDBCompass tool to visualize data base
 ## Set up
 1. Go to product-inventory-service folder

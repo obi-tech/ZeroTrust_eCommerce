@@ -1,7 +1,7 @@
 from concurrent import futures
 import grpc
-from app.grpc_service import product_catalog_pb2, product_catalog_pb2_grpc
-from app.services.product_logic import add_product, get_product, update_product, delete_product
+from src.grpc_service import product_catalog_pb2, product_catalog_pb2_grpc
+from src.services.product_logic import add_product, get_product, update_product, delete_product
 
 
 class ProductCatalogService(product_catalog_pb2_grpc.ProductCatalogServiceServicer):

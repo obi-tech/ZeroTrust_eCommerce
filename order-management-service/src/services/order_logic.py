@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from app.services.db import get_order_collection
+from ..services.db import get_order_collection
 from ..kafka.producer import send_order_event
 from bson import ObjectId
 from bson.errors import InvalidId

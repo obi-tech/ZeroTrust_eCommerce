@@ -2,7 +2,7 @@
 from concurrent import futures
 import grpc
 import order_management_pb2, order_management_pb2_grpc
-from app.services.order_logic import create_order, get_order, update_order, delete_order
+from ..services.order_logic import create_order, get_order, update_order, delete_order
 
 class OrderManagementService(order_management_pb2_grpc.OrderManagementServicer):
     def CreateOrder(self, request, context):
@@ -71,8 +71,8 @@ def serve():
     """Starts the gRPC server."""
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     order_management_pb2_grpc.add_OrderManagementServicer_to_server(OrderManagementService(), server)
-    server.add_insecure_port("[::]:50051")
-    print("gRPC server is running on port 50051...")
+    server.add_insecure_port("[::]:50052")
+    print("gRPC server is running on port 50052...")
     server.start()
     server.wait_for_termination()
 
