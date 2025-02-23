@@ -1,11 +1,23 @@
 # ZeroTrust_eCommerce
 
 ### tools
- - python 3.11.1
- - pip 24.3.1 
+ - Docker Desktop
+
 
 ### setting up
-- pull and run zookeeper, kafka, mongo db docker image
-- Start microservice: uvicorn app.main:app --reload --port 8000
-- Visit http://127.0.0.1:8000/docs to test the API endpoints.
+- Start Docker Desktop
+- Go to the root directory of the project (ZeroTrust_eCommerce)
+- open cmd here
+- run ``docker-compose build``
+- run ``docker-compose up -d``
+- check your docker desktop to see if all the containers are running
+- current containers are:
+    - mongo orders
+    - mongo inventory
+    - zookeeper
+    - kafka
+    - order-management
+    - product-inventory
+- open browser and go to ``http://localhost:8000/doc`` to see available APIs, you can also test the APIs from here and check data from database (please check db port in docker desktop)
+
 
