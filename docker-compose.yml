@@ -73,6 +73,7 @@ services:
 
   order-management-service:
     build: ./order-management-service
+    image: xiru2024/order-management:latest
     container_name: order_management
     ports:
       - "8000:8000"
@@ -87,6 +88,7 @@ services:
 
   product-inventory-service:
     build: ./product-inventory-service
+    image: xiru2024/product-inventory:latest
     container_name: product_inventory
 #    ports:
 #      - "8001:8001"
