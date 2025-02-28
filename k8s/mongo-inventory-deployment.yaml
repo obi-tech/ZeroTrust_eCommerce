@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: mongo-inventory
+  name: mongo-inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongo-inventory
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.35.0 (9532ceef3)
+      labels:
+        io.kompose.service: mongo-inventory
+    spec:
+      containers:
+        - image: mongo
+          name: mongo-inventory
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-inventory-data
+      restartPolicy: Always
+      volumes:
+        - name: mongo-inventory-data
+          persistentVolumeClaim:
+            claimName: mongo-inventory-data
