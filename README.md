@@ -20,4 +20,5 @@
     - product-inventory
 - open browser and go to ``http://localhost:8000/doc`` to see available APIs, you can also test the APIs from here and check data from database (please check db port in docker desktop)
 
-
+### Documentation
+https://furtive-iberis-a70.notion.site/Implementation-Kubernetes-19d2035d521480e8becfd79843d8c36d
