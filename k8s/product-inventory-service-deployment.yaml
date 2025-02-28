@@ -23,7 +23,7 @@ spec:
       containers:
         - env:
             - name: KAFKA_BROKER
-              value: kafka:29092
+              value: kafka:9092
             - name: MONGO_URI
               value: mongodb://mongo-inventory:27014/product-inventory
           image: xiru2024/product-inventory:latest

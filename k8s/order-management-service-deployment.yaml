@@ -23,9 +23,9 @@ spec:
       containers:
         - env:
             - name: KAFKA_BROKER
-              value: kafka:29092
+              value: kafka:9092
             - name: MONGO_URI
-              value: mongodb://mongo_orders:27017/order-management
+              value: mongodb://mongo-orders:27017/order-management
           image: xiru2024/order-management:latest
           name: order-management
           ports:
