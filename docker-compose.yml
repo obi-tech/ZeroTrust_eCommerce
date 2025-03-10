@@ -53,6 +53,15 @@ services:
       retries: 3
       start_period: 15s
 
+  mongo_account:
+    image: mongo
+    container_name: mongo_account
+    restart: always
+    ports:
+      - "27011:27017"
+    volumes:
+      - mongo_account_data:/data/db
+
   mongo_orders:
     image: mongo
     container_name: mongo_orders
@@ -102,9 +111,26 @@ services:
       kafka:
         condition: service_started
 
+  account-service:
+    build: ./account-service
+    image: xiru2024/account:latest
+    container_name: product
+    ports:
+      - "11500:11500"
+    environment:
+      - KAFKA_BROKER=kafka:29092
+      - MONGO_URI=mongodb://mongo_account:27017/account
+
+    depends_on:
+      mongo_account:
+        condition: service_started
+      kafka:
+        condition: service_started
+
 volumes:
   mongo_orders_data:
   mongo_inventory_data:
+  mongo_account_data:
   kafka_data:
     driver: local
 

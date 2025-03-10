@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: mongo-account
+  name: mongo-account
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongo-account
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.35.0 (9532ceef3)
+      labels:
+        io.kompose.service: mongo-account
+    spec:
+      containers:
+        - image: mongo
+          name: mongo-account
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-account-data
+      restartPolicy: Always
+      volumes:
+        - name: mongo-account-data
+          persistentVolumeClaim:
+            claimName: mongo-account-data
